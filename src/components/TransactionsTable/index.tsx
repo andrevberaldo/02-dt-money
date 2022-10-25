@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { api } from "../../services/api";
 import { Container } from "./transactionsTable.styles";
 
 interface ITransaction {
@@ -15,9 +16,8 @@ function TransactionTable() {
     const [transactions, setTransactions] = useState<ITransaction[]>([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/transactions')
-        .then(response => response.json())
-        .then(data => setTransactions(data))
+        api.get('transactions')
+        .then(response => console.log(response.data))
     }, [])
 
 
