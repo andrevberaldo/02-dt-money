@@ -1,10 +1,9 @@
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
-import { createServer } from 'miragejs';
-
 import { GlobalStyle } from "./styles/global"
 import { useState } from "react";
 import Modal from 'react-modal';
+import { NewTransactionModal } from "./components/NewTransactionModals";
 
 Modal.setAppElement('#root');
 
@@ -22,12 +21,10 @@ export function App() {
 
   return (
     <>
-      <Modal
+      <NewTransactionModal 
         isOpen={isOpen}
         onRequestClose={handleClose}
-      >
-        <div>TESTE CONTEUDO</div>
-      </Modal>   
+      />
       
       <Header handleOnClick={handleOnClick}/>
       
