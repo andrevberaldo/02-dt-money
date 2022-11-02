@@ -26,10 +26,10 @@ function TransactionTable() {
             <table>
                 <thead>
                     <tr>
-                        <th>Título</th>
-                        <th>Valor</th>
-                        <th>Categoria</th>
-                        <th>Data</th>
+                        <th>Tite</th>
+                        <th>Value</th>
+                        <th>Category</th>
+                        <th>Date</th>
                     </tr>                    
                 </thead>
 
