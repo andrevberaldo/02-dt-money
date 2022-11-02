@@ -19,7 +19,7 @@ export function Header({handleOnClick}: HeaderProps) {
                     type="button"
                     onClick={handleOnClick}
                 > 
-                        Nova Transação
+                        New Transaction
                 </button>
             </Content>    
                          
