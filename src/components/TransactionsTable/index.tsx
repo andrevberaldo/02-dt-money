@@ -3,7 +3,7 @@ import { api } from "../../services/api";
 import { TransactionsContext } from "../../TransactionsContext";
 import { Container } from "./transactionsTable.styles";
 
-interface ITransaction {
+interface Transaction {
     id: number;
     title: string;
     amount: number;
@@ -12,16 +12,8 @@ interface ITransaction {
     createdAt: string;
 }
 
-
 function TransactionTable() {
-    const [transactions, setTransactions] = useState<ITransaction[]>([]);
-    const data = useContext(TransactionsContext);
-
-    useEffect(() => {
-        api.get('transactions')
-        .then(response => setTransactions(response.data.transactions))
-    }, [])
-
+    const transactions = useContext(TransactionsContext);
 
     return (
         <Container>
@@ -36,7 +28,7 @@ function TransactionTable() {
                 </thead>
 
                 <tbody>
-                    {transactions.map((transaction: ITransaction) => {
+                    {transactions.map((transaction: Transaction) => {
                         return (
                             <tr key={transaction.id}>
                                 <td>{transaction.category}</td>
