@@ -5,10 +5,10 @@ import { Container } from "./transactionsTable.styles";
 interface ITransaction {
     id: number;
     title: string;
-    amout: number;
+    amount: number;
     type: string;
     category: string;
-    creatAt: string;
+    createdAt: string;
 }
 
 
@@ -17,7 +17,7 @@ function TransactionTable() {
 
     useEffect(() => {
         api.get('transactions')
-        .then(response => console.log(response.data))
+        .then(response => setTransactions(response.data.transactions))
     }, [])
 
 
@@ -38,9 +38,9 @@ function TransactionTable() {
                         return (
                             <tr key={transaction.id}>
                                 <td>{transaction.category}</td>
-                                <td className={transaction.amout < 0 ? 'withdraw' : 'income'}>{`R$ ${transaction.amout}`}</td>
+                                <td className={transaction.type}>{`R$ ${transaction.amount}`}</td>
                                 <td>{transaction.type}</td>
-                                <td>{transaction.creatAt}</td>
+                                <td>{transaction.createdAt}</td>
                             </tr>
                         ) 
                     })}
