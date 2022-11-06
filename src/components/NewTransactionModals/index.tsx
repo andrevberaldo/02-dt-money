@@ -19,14 +19,6 @@ export function NewTransactionModal({isOpen, onRequestClose}: newTransactionModa
     
     function handleCreateNewTransaction(props: FormEvent) {
         props.preventDefault();
-
-        const data = {
-            title,
-            value,
-            category,
-            type
-        }
-        
     }
     
     return (

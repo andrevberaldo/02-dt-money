@@ -1,15 +1,28 @@
+import { useState } from 'react'
 import logoImg from '../../assets/logo.svg'
 import { Container, Content } from './header.styles'
 
-export function Header() {
+interface HeaderProps {
+    handleOnClick: () => void;
+}
+
+
+export function Header({handleOnClick}: HeaderProps) {
+
+    
+    
     return(
-        <Container>
+        <Container>               
             <Content>
                 <img src={logoImg} alt="dt money" />
-                <button type="button"> 
-                    Nova Transação
+                <button 
+                    type="button"
+                    onClick={handleOnClick}
+                > 
+                        New Transaction
                 </button>
-            </Content>            
+            </Content>    
+                         
         </Container>
     )
 }
