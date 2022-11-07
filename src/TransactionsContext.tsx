@@ -13,7 +13,7 @@ interface Transaction {
 
 interface createContextProps {
     transactions: Transaction[];
-    createTransaction: (transaction: TransactionDTOInput) => void;
+    createTransaction: (transaction: TransactionDTOInput) => Promise<void>;
 }
 
 type TransactionDTOInput = Omit<Transaction, 'id' | 'createdAt'>
@@ -32,6 +32,10 @@ export function TransactionsProvider({children}: TransactionsProviderProps){
         .then(response => setTransactions(response.data.transactions))
     }, []);
 
+    async function createTransaction(transaction: TransactionDTOInput){
+        await api.post('/transactions', transaction);
+    } 
+
     return (
         <TransactionsContext.Provider value={{transactions, createTransaction}}>
             { children }
@@ -39,6 +43,4 @@ export function TransactionsProvider({children}: TransactionsProviderProps){
     )
 }
 
-export function createTransaction(transaction: TransactionDTOInput){
-    api.post('/transactions', transaction);
-} 
+
