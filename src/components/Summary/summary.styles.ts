@@ -27,8 +27,15 @@ export const Container = styled.div`
         }
 
         &.heighlight-text {
-            background-color: var(--green);
             color: #FFF;
+        }
+
+        &.negative {
+            background-color: var(--red);
+        }
+
+        &.positive {
+            background-color: var(--green);
         }
     }
 `
