@@ -1,17 +1,20 @@
 import Modal from 'react-modal';
-import { Container, RadioBox, TransactionTypeContainer } from './newTransactionModal.styles';
+import { FormEvent, useState, useContext } from 'react';
+import { api } from '../../services/api';
+import { TransactionsContext } from '../../TransactionsContext';
+
 import closeImg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
-import { FormEvent, useState } from 'react';
-import { api } from '../../services/api';
 
+import { Container, RadioBox, TransactionTypeContainer } from './newTransactionModal.styles';
 interface newTransactionModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
 }
 
 export function NewTransactionModal({isOpen, onRequestClose}: newTransactionModalProps) {
+    const transactions = useContext(TransactionsContext);
 
     const [title, setTitle] = useState('');
     const [value, setValue] = useState(0);
@@ -19,16 +22,7 @@ export function NewTransactionModal({isOpen, onRequestClose}: newTransactionModa
     const [type, setType] = useState('deposit');
     
     function handleCreateNewTransaction(props: FormEvent) {
-        props.preventDefault();
-
-        const data = {
-            title,
-            value,
-            category,
-            type
-        }
-
-        api.post('/transactions', data);
+        props.preventDefault();        
     }
     
     return (

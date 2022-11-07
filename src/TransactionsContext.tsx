@@ -1,4 +1,4 @@
-import { Children, createContext, ReactNode, useEffect, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import { api } from './services/api';
 
 
@@ -10,6 +10,8 @@ interface Transaction {
     category: string;
     createdAt: string;
 }
+
+type TransactionDTOInput = Omit<Transaction, 'id' | 'createdAt'>
 
 interface TransactionsProviderProps {
     children: ReactNode;
@@ -31,3 +33,7 @@ export function TransactionsProvider({children}: TransactionsProviderProps){
         </TransactionsContext.Provider>
     )
 }
+
+export function createTransaction(transaction: TransactionDTOInput){
+    api.post('/transactions', transaction);
+} 
