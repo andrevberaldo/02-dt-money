@@ -42,7 +42,7 @@ export function Summary() {
             </div>
             <div>
                 <header>
-                    <p>Outcomes</p>
+                    <p>Expenses</p>
                     <img src={outcomeImg} alt="saidas" />
                 </header>
                 <strong>
@@ -54,7 +54,7 @@ export function Summary() {
             </div>
             <div className={total < 0 ? "heighlight-text negative" : "heighlight-text positive"}>
                 <header>
-                    <p>Total</p>
+                    <p>Balance</p>
                     <img src={totalImg} alt="total" />
                 </header>
                 <strong>
