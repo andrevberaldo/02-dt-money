@@ -12,7 +12,7 @@ interface Transaction {
 }
 
 function TransactionTable() {
-    const transactions = useContext(TransactionsContext);
+    const {transactions} = useContext(TransactionsContext);
 
     return (
         <Container>
