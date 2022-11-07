@@ -30,7 +30,15 @@ export function NewTransactionModal({isOpen, onRequestClose}: newTransactionModa
             type
         });
         
+        resetToInitialValues();
         onRequestClose();
+    }
+
+    function resetToInitialValues() {
+        setTitle('');
+        setAmount(0);
+        setCategory('');
+        setType('');
     }
     
     return (
