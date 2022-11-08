@@ -5,6 +5,10 @@ import totalImg from '../../assets/total.svg'
 import { useTransactions } from "../../hooks/useTransactions";
 
 
+interface IO {
+    [key: string]: string;
+}
+
 
 export function Summary() {
     const { transactions } = useTransactions();
@@ -26,6 +30,27 @@ export function Summary() {
 
     const total = totalIncome + totalWithdraw;
 
+    const currencies: IO = {
+        'en-US': 'USD',
+        'pr-BR': 'BRL',
+        'de-DE': 'EUR'
+    }
+
+    function getCurrency() {
+        const locale = navigator.languages[0];
+        const currency = currencies[locale];
+    
+        if(currency) return {
+            locale,
+            currency
+        }
+
+        return {
+            locale: 'en-US',
+            currency: 'USD'
+        }
+    }
+
     return (
         <Container>
             <div>
@@ -34,9 +59,9 @@ export function Summary() {
                     <img src={incomeImg} alt="entradas" />
                 </header>
                 <strong>
-                    {new Intl.NumberFormat('pt-BR', {
+                    {new Intl.NumberFormat(getCurrency().locale, {
                         style: 'currency',
-                        currency: 'BRL'
+                        currency: getCurrency().currency
                     }).format(totalIncome)}
                 </strong>
             </div>
@@ -46,9 +71,9 @@ export function Summary() {
                     <img src={outcomeImg} alt="saidas" />
                 </header>
                 <strong>
-                    {new Intl.NumberFormat('pt-BR', {
+                    {new Intl.NumberFormat(getCurrency().locale, {
                         style: 'currency',
-                        currency: 'BRL'
+                        currency: getCurrency().currency
                     }).format(totalWithdraw)}
                 </strong>
             </div>
@@ -58,9 +83,9 @@ export function Summary() {
                     <img src={totalImg} alt="total" />
                 </header>
                 <strong>
-                    {new Intl.NumberFormat('pt-BR', {
+                    {new Intl.NumberFormat(getCurrency().locale, {
                         style: 'currency',
-                        currency: 'BRL'
+                        currency: getCurrency().currency
                     }).format(total)}
                 </strong>
             </div>

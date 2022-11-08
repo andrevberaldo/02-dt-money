@@ -7,6 +7,7 @@ import outcomeImg from '../../assets/outcome.svg'
 
 import { Container, RadioBox, TransactionTypeContainer } from './newTransactionModal.styles';
 import { useTransactions } from '../../hooks/useTransactions';
+
 interface newTransactionModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
@@ -80,6 +81,7 @@ export function NewTransactionModal({isOpen, onRequestClose}: newTransactionModa
                         onClick={() => setType('income')}
                         isActive={type === 'income'}
                         activeColor={'green'}
+                        type={'button'}
                     >
                         <img src={incomeImg} alt="Income" />
                         <span>Income</span>
@@ -88,6 +90,7 @@ export function NewTransactionModal({isOpen, onRequestClose}: newTransactionModa
                         onClick={() => setType('withdraw')}
                         isActive={type === 'withdraw'}
                         activeColor={'red'}
+                        type={'button'}
                     >
                         <img src={outcomeImg} alt="outcome" />
                         <span>Expense</span>

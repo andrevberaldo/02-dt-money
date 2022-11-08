@@ -9,9 +9,33 @@ interface Transaction {
     category: string;
     createdAt: string;
 }
+interface IO {
+    [key: string]: string;
+}
 
 function TransactionTable() {
     const { transactions } = useTransactions();
+
+    const currencies: IO = {
+        'en-US': 'USD',
+        'pt-BR': 'BRL',
+        'de-DE': 'EUR'
+    }
+
+    function getCurrency() {
+        const locale = navigator.languages[0];
+        const currency = currencies[locale];
+    
+        if(currency) return {
+            locale,
+            currency
+        }
+
+        return {
+            locale: 'en-US',
+            currency: 'USD'
+        }
+    }
 
     return (
         <Container>
@@ -32,16 +56,16 @@ function TransactionTable() {
                                 <td>{transaction.category}</td>
                                 <td className={transaction.type}>
                                     {
-                                        new Intl.NumberFormat('pt-BR', {
+                                        new Intl.NumberFormat(getCurrency().locale, {
                                             style: 'currency',
-                                            currency: 'BRL'
+                                            currency: getCurrency().currency
                                         }).format(transaction.amount)
                                     }
                                 </td>
                                 <td>{transaction.type}</td>
                                 <td>
                                 {
-                                        new Intl.DateTimeFormat('pt-BR').format(
+                                        new Intl.DateTimeFormat(getCurrency().locale).format(
                                             new Date(transaction.createdAt))
                                     }
                                 </td>
